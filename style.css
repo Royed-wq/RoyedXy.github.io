@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background: linear-gradient(to bottom, #ff007a, #5300ff); /* لون علوي وسفلي */
+    background: linear-gradient(to bottom, #2c1c16, #0d0d0d); /* لون علوي بني غامق ولون سفلي أسود */
     color: #fff;
     display: flex;
     justify-content: center;
