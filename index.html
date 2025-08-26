@@ -37,14 +37,32 @@
       text-align: center;
     }
 
-    .profile-picture {
+    /* حاوية الصورة مع الديكوريشن */
+    .profile-picture-wrapper {
+      position: relative;
       width: 100px;
       height: 100px;
+      margin: 0 auto;
+      margin-top: -50px;
+    }
+
+    .profile-picture {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      margin-top: -50px;
       border: 4px solid #000;
       background-color: #000;
+    }
+
+    /* الديكور (أذن القط) */
+    .profile-decoration {
+      position: absolute;
+      top: -15px; /* نرفعها فوق شوي */
+      left: 0;
+      width: 100%;
+      height: auto;
+      pointer-events: none; /* عشان ما تغطي التفاعل */
     }
 
     h2 {
@@ -189,14 +207,19 @@
   <div class="container">
     <div class="background-image"></div>
     <div class="profile-section">
-      <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
+      <!-- صورة مع الديكوريشن -->
+      <div class="profile-picture-wrapper">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
+        <img src="cat-ears.png" alt="Cat Ears Decoration" class="profile-decoration">
+      </div>
+
       <h2>Little Dream ↝</h2>
       <p class="username">@Rody🍬</p>
       <div class="social-links">
-  <a href="https://youtube.com/@r.y6x?si=E1z_1Jr9KjYWECbG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
-  <a href="https://instagram.com/o.o.cxr" target="_blank"><img src="instagram.png" alt="Instagram"></a>
-  <a href="https://t.me/IMohaMed_UP" target="_blank"><img src="telegram.png" alt="Telegram"></a>
-  <a href="https://discord.gg/TQVjWZYUa7" target="_blank"><img src="discord.png" alt="Discord"></a>
+        <a href="https://youtube.com/@r.y6x?si=E1z_1Jr9KjYWECbG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
+        <a href="https://instagram.com/o.o.cxr" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://t.me/IMohaMed_UP" target="_blank"><img src="telegram.png" alt="Telegram"></a>
+        <a href="https://discord.gg/TQVjWZYUa7" target="_blank"><img src="discord.png" alt="Discord"></a>
       </div>
     </div>
   </div>
