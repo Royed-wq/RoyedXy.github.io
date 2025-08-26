@@ -58,11 +58,12 @@
     /* الديكور (أذن القط) */
     .profile-decoration {
       position: absolute;
-      top: -15px; /* نرفعها فوق شوي */
+      top: 0;       /* تبدأ من أعلى الصورة */
       left: 0;
       width: 100%;
-      height: auto;
-      pointer-events: none; /* عشان ما تغطي التفاعل */
+      height: 100%;
+      object-fit: contain; /* الأذان تبقى داخل حدود الصورة */
+      pointer-events: none;
     }
 
     h2 {
