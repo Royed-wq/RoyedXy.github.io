@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3> ≽^• ˕ • ྀི≼</title>
 
-  <!-- هنا ايقونة المتصفح    -->
+  <!-- هنا ايقونة المتصفح -->
   <link rel="icon" type="image/png" href="favicon.jpg">
 
   <style>
@@ -41,7 +41,6 @@
       text-align: center;
     }
 
-    /* حاوية الصورة مع الديكوريشن */
     .profile-picture-wrapper {
       position: relative;
       width: 100px;
@@ -59,12 +58,11 @@
       background-color: #000;
     }
 
-    /* الديكور (أذن القط) */
     .profile-decoration {
       position: absolute;
-      top: -10px;   /* تطلع شوي بره الدائرة */
+      top: -10px;
       left: 50%;
-      width: 120%;  /* أكبر شوي من الصورة عشان الأذان تبان */
+      width: 120%;
       height: auto;
       transform: translateX(-50%);
       pointer-events: none;
@@ -206,13 +204,34 @@
       width: 0%;
       background-color: #B6C2FF;
     }
+
+    /* أيقونة صغيرة في الركن (أسفل يمين) */
+    .corner-icon {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 45px;
+      height: 45px;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .corner-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px; /* إذا تريدها دائرية غيرها إلى 50% */
+    }
+
   </style>
 </head>
 <body>
+
   <div class="container">
     <div class="background-image"></div>
+
     <div class="profile-section">
-      <!-- صورة مع الديكوريشن -->
       <div class="profile-picture-wrapper">
         <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
         <img src="cat-ears.gif" alt="Cat Ears Decoration" class="profile-decoration">
@@ -220,6 +239,7 @@
 
       <h2>Little Dream ↝</h2>
       <p class="username">@Roro🌙</p>
+
       <div class="social-links">
         <a href="https://youtube.com/@r.y6x?si=E1z_1Jr9KjYWECbG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
         <a href="https://instagram.com/o.o.cxr" target="_blank"><img src="instagram.png" alt="Instagram"></a>
@@ -239,8 +259,9 @@
     <div class="song" data-src="Miku-by-Anamanaguchi-Lyrics-Video-128Kbps-44KHz.m4a" data-img="cover1.jpg">
       <div class="song-info">
         <img src="cover1.jpg" alt="cover" />
-        <span> Hatsune Miku</span>
+        <span>Hatsune Miku</span>
       </div>
+
       <div class="song-controls">
         <button class="song-play-btn">▶</button>
         <div class="song-right">
@@ -248,11 +269,17 @@
           <button class="song-restart-btn">🔁</button>
         </div>
       </div>
+
       <div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
   </div>
 
   <audio id="audioPlayer"></audio>
+
+  <!-- أيقونة الركن — اضغط عليها تفتح رابط -->
+  <a href="https://example.com" target="_blank" class="corner-icon">
+    <img src="emoji.png" alt="icon">
+  </a>
 
   <script>
     const musicBox = document.getElementById("musicBox");
@@ -332,5 +359,6 @@
       if (currentPlayBtn) currentPlayBtn.textContent = "▶";
     });
   </script>
+
 </body>
 </html>
