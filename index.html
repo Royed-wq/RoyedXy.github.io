@@ -159,11 +159,10 @@
       object-fit: cover;
     }
 
-    /* تصغير أزرار الموسيقى */
     .song-controls button {
       background: none;
       border: none;
-      font-size: 15px; /* ← الحجم الصغير مثل الصورة */
+      font-size: 15px;
       cursor: pointer;
       color: white;
       outline: none;
@@ -185,7 +184,7 @@
     .song-right {
       display: flex;
       align-items: center;
-      gap: 6px; /* أصغر */
+      gap: 6px;
     }
 
     .song-time {
@@ -207,7 +206,7 @@
       background-color: #6481E3;
     }
 
-    /* أيقونة الركن */
+    /* زر الركن (إيموجي ديسكورد) */
     .corner-icon {
       position: fixed;
       bottom: 15px;
@@ -241,18 +240,28 @@
       z-index: 9999;
       border: 1px solid #333;
       outline: none !important;
+      user-select: none;
+    }
+
+    #viewCounterBox:focus,
+    #viewCounterBox:active {
+      outline: none !important;
+      box-shadow: none !important;
     }
 
     .view-eye {
       width: 23px;
       height: 23px;
       border-radius: 50%;
+      pointer-events: none;
+      user-select: none;
     }
 
     .view-number {
       font-size: 17px;
       color: white;
       font-weight: bold;
+      user-select: none;
     }
 
     #profileViewsCard {
@@ -272,6 +281,7 @@
       pointer-events: none;
       transition: 0.22s ease;
       z-index: 9999;
+      user-select: none;
     }
 
     #profileViewsCard.active {
@@ -282,9 +292,9 @@
 
     .profileTitle {
       font-size: 20px;
-      margin-bottom: 0; /* إزالة المسافة لأنها كانت للخط */
+      margin-bottom: 0;
+      user-select: none;
     }
-
   </style>
 </head>
 <body>
@@ -336,7 +346,7 @@
 
   <audio id="audioPlayer"></audio>
 
-  <!-- أيقونة الركن -->
+  <!-- زر الركن بالرابط الصحيح -->
   <a href="https://mohamed-elaraby01.github.io/MohammedMeow/" target="_blank" class="corner-icon">
     <img src="emoji.gif">
   </a>
