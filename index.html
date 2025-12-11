@@ -7,6 +7,9 @@
 
   <link rel="icon" type="image/png" href="favicon.jpg">
 
+  <!-- خط ProFile Views -->
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -90,6 +93,7 @@
       height: 30px;
     }
 
+    /* صندوق مشغل الموسيقى */
     .music-box {
       position: absolute;
       top: 10px;
@@ -225,6 +229,7 @@
     </div>
   </div>
 
+  <!-- مربع الموسيقى -->
   <div class="music-box" id="musicBox">
     <img id="currentSongImage" src="cover1.jpg">
   </div>
@@ -250,30 +255,33 @@
 
   <audio id="audioPlayer"></audio>
 
+  <!-- أيقونة الركن -->
   <a href="https://mohamed-elaraby01.github.io/MohammedMeow/" target="_blank" class="corner-icon">
     <img src="emoji.gif">
   </a>
 
-  <!-- ===== نافذة ProFile Views ===== -->
+  <!-- 🌟 صندوق ProFile Views الجديد فوق العين -->
   <div id="viewsPopup" style="
     position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #0a3d62, #079992);
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: white;
-    font-size: 20px;
+    bottom: 70px;
+    left: 15px;
+    background: linear-gradient(135deg, #d8d8d8, #ffffff);
+    padding: 10px 20px;
+    border-radius: 18px;
+    color: #000;
+    font-family: 'Comic Neue', cursive;
+    font-size: 18px;
     font-weight: bold;
     display: none;
     z-index: 1000;
-    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    box-shadow: 0 0 8px rgba(255,255,255,0.4);
+    border: 2px solid #000;
+    text-align: center;
   ">
     ProFile Views
   </div>
 
-  <!-- ===== العداد أسفل اليسار ===== -->
+  <!-- 👁️ العداد + صورة العين -->
   <div id="visitCounter" style="
     position: fixed;
     bottom: 15px;
@@ -284,11 +292,13 @@
     cursor: pointer;
     z-index: 999;
   ">
-    <img src="eye.png" style="width:28px;height:28px;">
+    <img src="eye.png" style="width:27px;height:27px;">
     <span id="countNumber" style="color:#4e7cff;font-size:22px;font-weight:bold;">0</span>
   </div>
 
+
   <script>
+    /* === تشغيل مشغل الموسيقى === */
     const musicBox = document.getElementById("musicBox");
     const songList = document.getElementById("songList");
     const audioPlayer = document.getElementById("audioPlayer");
@@ -365,7 +375,7 @@
       if (currentPlayBtn) currentPlayBtn.textContent = "▶";
     });
 
-    /* ========== عداد الزيارات + النافذة ========== */
+    /* === عداد الزيارات + صندوق ProFile Views === */
     let totalVisits = localStorage.getItem("totalVisitsGlobal");
 
     if (!totalVisits) totalVisits = 0;
