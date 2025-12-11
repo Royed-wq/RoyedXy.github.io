@@ -221,7 +221,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50px; /* إذا تريدها دائرية غيرها إلى 50% */
+      border-radius: 50px;
     }
 
   </style>
@@ -276,10 +276,30 @@
 
   <audio id="audioPlayer"></audio>
 
-  <!-- أيقونة الركن — اضغط عليها تفتح رابط -->
+  <!-- أيقونة الركن -->
   <a href="https://mohamed-elaraby01.github.io/MohammedMeow/" target="_blank" class="corner-icon">
-    <img src="emoji.gif" alt="icon">
+    <img src="emoji.gif" alt="my eternal love">
   </a>
+
+  <!-- عداد الزوار -->
+  <div id="visitCounter" style="
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.7);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 999;
+  ">
+    <img src="eye.png" alt="eye" style="width:20px;height:20px;object-fit:contain;">
+    <span style="color: #fff;">🔥 الزوار:</span>
+    <span id="countNumber" style="color: #fff;">0</span>
+  </div>
 
   <script>
     const musicBox = document.getElementById("musicBox");
@@ -358,6 +378,26 @@
     audioPlayer.addEventListener("ended", () => {
       if (currentPlayBtn) currentPlayBtn.textContent = "▶";
     });
+
+    //================ عداد الزوار =================//
+
+    let totalVisits = localStorage.getItem("totalVisitsGlobal");
+
+    if (!totalVisits) {
+      totalVisits = 0;
+    } else {
+      totalVisits = parseInt(totalVisits);
+    }
+
+    let userVisited = localStorage.getItem("userVisited");
+
+    if (!userVisited) {
+      totalVisits++;
+      localStorage.setItem("totalVisitsGlobal", totalVisits);
+      localStorage.setItem("userVisited", "true");
+    }
+
+    document.getElementById("countNumber").textContent = totalVisits;
   </script>
 
 </body>
