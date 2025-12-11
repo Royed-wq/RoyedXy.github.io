@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>3> ≽^• ˕ • ྀི≼</title>
 
-  <!-- هنا ايقونة المتصفح -->
   <link rel="icon" type="image/png" href="favicon.jpg">
 
   <style>
@@ -63,7 +62,6 @@
       top: -10px;
       left: 50%;
       width: 120%;
-      height: auto;
       transform: translateX(-50%);
       pointer-events: none;
     }
@@ -92,7 +90,6 @@
       height: 30px;
     }
 
-    /* مربع الموسيقى */
     .music-box {
       position: absolute;
       top: 10px;
@@ -113,7 +110,6 @@
       object-fit: cover;
     }
 
-    /* قائمة الأغاني */
     .song-list {
       position: absolute;
       top: 90px;
@@ -159,31 +155,11 @@
       object-fit: cover;
     }
 
-    .song-info span {
-      font-size: 15px;
-      color: #fff;
-    }
-
     .song-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
-    }
-
-    .song-play-btn,
-    .song-restart-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .song-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .song-time {
@@ -205,7 +181,7 @@
       background-color: #B6C2FF;
     }
 
-    /* أيقونة صغيرة في الركن (أسفل يمين) */
+    /* أيقونة الركن */
     .corner-icon {
       position: fixed;
       bottom: 15px;
@@ -233,32 +209,30 @@
 
     <div class="profile-section">
       <div class="profile-picture-wrapper">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-picture">
-        <img src="cat-ears.gif" alt="Cat Ears Decoration" class="profile-decoration">
+        <img src="profile.jpg" class="profile-picture">
+        <img src="cat-ears.gif" class="profile-decoration">
       </div>
 
       <h2>Little Dream ↝</h2>
       <p class="username">@Roro🌙</p>
 
       <div class="social-links">
-        <a href="https://youtube.com/@r.y6x?si=E1z_1Jr9KjYWECbG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
-        <a href="https://instagram.com/o.o.cxr" target="_blank"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://t.me/IMohaMed_UP" target="_blank"><img src="telegram.png" alt="Telegram"></a>
-        <a href="https://discord.gg/TQVjWZYUa7" target="_blank"><img src="discord.png" alt="Discord"></a>
+        <a href="https://youtube.com/@r.y6x?si=E1z_1Jr9KjYWECbG" target="_blank"><img src="youtube.png"></a>
+        <a href="https://instagram.com/o.o.cxr" target="_blank"><img src="instagram.png"></a>
+        <a href="https://t.me/IMohaMed_UP" target="_blank"><img src="telegram.png"></a>
+        <a href="https://discord.gg/TQVjWZYUa7" target="_blank"><img src="discord.png"></a>
       </div>
     </div>
   </div>
 
-  <!-- مربع الموسيقى -->
   <div class="music-box" id="musicBox">
-    <img id="currentSongImage" src="cover1.jpg" alt="Current Song" />
+    <img id="currentSongImage" src="cover1.jpg">
   </div>
 
-  <!-- قائمة الأغاني -->
   <div class="song-list" id="songList">
     <div class="song" data-src="Miku-by-Anamanaguchi-Lyrics-Video-128Kbps-44KHz.m4a" data-img="cover1.jpg">
       <div class="song-info">
-        <img src="cover1.jpg" alt="cover" />
+        <img src="cover1.jpg">
         <span>Hatsune Miku</span>
       </div>
 
@@ -276,29 +250,42 @@
 
   <audio id="audioPlayer"></audio>
 
-  <!-- أيقونة الركن -->
   <a href="https://mohamed-elaraby01.github.io/MohammedMeow/" target="_blank" class="corner-icon">
-    <img src="emoji.gif" alt="my eternal love">
+    <img src="emoji.gif">
   </a>
 
-  <!-- عداد الزوار -->
+  <!-- ===== نافذة ProFile Views ===== -->
+  <div id="viewsPopup" style="
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #0a3d62, #079992);
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  ">
+    ProFile Views
+  </div>
+
+  <!-- ===== العداد أسفل اليسار ===== -->
   <div id="visitCounter" style="
     position: fixed;
     bottom: 15px;
     left: 15px;
-    background: rgba(0,0,0,0.7);
-    padding: 8px 12px;
-    border-radius: 10px;
-    font-size: 14px;
-    border: 1px solid #555;
     display: flex;
     align-items: center;
     gap: 6px;
+    cursor: pointer;
     z-index: 999;
   ">
-    <img src="eye.png" alt="eye" style="width:20px;height:20px;object-fit:contain;">
-    <span style="color: #fff;"></span>
-    <span id="countNumber" style="color: #fff;">0</span>
+    <img src="eye.png" style="width:28px;height:28px;">
+    <span id="countNumber" style="color:#4e7cff;font-size:22px;font-weight:bold;">0</span>
   </div>
 
   <script>
@@ -354,15 +341,14 @@
         audioPlayer.ontimeupdate = () => {
           if (!audioPlayer.duration) return;
           const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-          currentProgress.style.width = `${percent}%`;
+          currentProgress.style.width = percent + "%";
 
-          const currentMin = Math.floor(audioPlayer.currentTime / 60);
-          const currentSec = Math.floor(audioPlayer.currentTime % 60).toString().padStart(2, "0");
+          const cMin = Math.floor(audioPlayer.currentTime / 60);
+          const cSec = Math.floor(audioPlayer.currentTime % 60).toString().padStart(2,"0");
+          const tMin = Math.floor(audioPlayer.duration / 60);
+          const tSec = Math.floor(audioPlayer.duration % 60).toString().padStart(2,"0");
 
-          const totalMin = Math.floor(audioPlayer.duration / 60);
-          const totalSec = Math.floor(audioPlayer.duration % 60).toString().padStart(2, "0");
-
-          currentTimeDisplay.textContent = `${currentMin}:${currentSec} / ${totalMin}:${totalSec}`;
+          currentTimeDisplay.textContent = `${cMin}:${cSec} / ${tMin}:${tSec}`;
         };
       });
 
@@ -379,15 +365,11 @@
       if (currentPlayBtn) currentPlayBtn.textContent = "▶";
     });
 
-    //================ عداد الزوار =================//
-
+    /* ========== عداد الزيارات + النافذة ========== */
     let totalVisits = localStorage.getItem("totalVisitsGlobal");
 
-    if (!totalVisits) {
-      totalVisits = 0;
-    } else {
-      totalVisits = parseInt(totalVisits);
-    }
+    if (!totalVisits) totalVisits = 0;
+    else totalVisits = parseInt(totalVisits);
 
     let userVisited = localStorage.getItem("userVisited");
 
@@ -398,6 +380,15 @@
     }
 
     document.getElementById("countNumber").textContent = totalVisits;
+
+    const counter = document.getElementById("visitCounter");
+    const popup = document.getElementById("viewsPopup");
+    let popupVisible = false;
+
+    counter.addEventListener("click", () => {
+      popupVisible = !popupVisible;
+      popup.style.display = popupVisible ? "block" : "none";
+    });
   </script>
 
 </body>
