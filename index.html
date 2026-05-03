@@ -93,7 +93,6 @@
       height: 30px;
     }
 
-    /* مربع الموسيقى */
     .music-box {
       position: absolute;
       top: 10px;
@@ -169,12 +168,6 @@
       padding: 0;
     }
 
-    .song-controls button:active,
-    .song-controls button:focus {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
     .song-controls {
       display: flex;
       justify-content: space-between;
@@ -206,7 +199,6 @@
       background-color: #6481E3;
     }
 
-    /* زر الركن (إيموجي ديسكورد) */
     .corner-icon {
       position: fixed;
       bottom: 15px;
@@ -225,7 +217,6 @@
       border-radius: 50px;
     }
 
-    /* نظام ProFile Views */
     #viewCounterBox {
       position: fixed;
       bottom: 20px;
@@ -239,29 +230,12 @@
       cursor: pointer;
       z-index: 9999;
       border: 1px solid #333;
-      outline: none !important;
-      user-select: none;
-    }
-
-    #viewCounterBox:focus,
-    #viewCounterBox:active {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-
-    .view-eye {
-      width: 23px;
-      height: 23px;
-      border-radius: 50%;
-      pointer-events: none;
-      user-select: none;
     }
 
     .view-number {
       font-size: 17px;
       color: white;
       font-weight: bold;
-      user-select: none;
     }
 
     #profileViewsCard {
@@ -281,7 +255,6 @@
       pointer-events: none;
       transition: 0.22s ease;
       z-index: 9999;
-      user-select: none;
     }
 
     #profileViewsCard.active {
@@ -292,11 +265,10 @@
 
     .profileTitle {
       font-size: 20px;
-      margin-bottom: 0;
-      user-select: none;
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
@@ -313,44 +285,13 @@
 
       <div class="social-links">
         <a href="https://youtube.com/@r.y6x" target="_blank"><img src="youtube.png"></a>
-        <a href="https://www.instagram.com/rody.mooo?igsh=cTBuZWFibWhxZmlr" target="_blank"><img src="instagram.png"></a>
+        <a href="https://www.instagram.com/rody.mooo" target="_blank"><img src="instagram.png"></a>
         <a href="https://discord.com/users/905063235231834203" target="_blank"><img src="discord.png"></a>
       </div>
     </div>
   </div>
 
-  <!-- مربع الموسيقى -->
-  <div class="music-box" id="musicBox">
-    <img id="currentSongImage" src="cover1.jpg">
-  </div>
-
-  <div class="song-list" id="songList">
-    <div class="song" data-src="Miku-by-Anamanaguchi-Lyrics-Video-128Kbps-44KHz.m4a" data-img="cover1.jpg">
-      <div class="song-info">
-        <img src="cover1.jpg">
-        <span>Hatsune Miku</span>
-      </div>
-
-      <div class="song-controls">
-        <button class="song-play-btn">▶</button>
-        <div class="song-right">
-          <span class="song-time">0:00 / 0:00</span>
-          <button class="song-restart-btn">🔁</button>
-        </div>
-      </div>
-
-      <div class="progress-bar"><div class="progress-fill"></div></div>
-    </div>
-  </div>
-
-  <audio id="audioPlayer"></audio>
-
-  <!-- زر الركن -->
-  <a href="https://discord.com/users/905063235231834203" target="_blank" class="corner-icon">
-    <img src="^~^.gif">
-  </a>
-
-  <!-- نظام ProFile Views -->
+  <!-- Profile Views -->
   <div id="viewCounterBox">
       <img class="view-eye" src="view-eye.png">
       <span class="view-number" id="counter">0</span>
@@ -360,107 +301,29 @@
       <div class="profileTitle">ProFile Views</div>
   </div>
 
-
   <script>
-    /* === مشغل الموسيقى === */
-    const musicBox = document.getElementById("musicBox");
-    const songList = document.getElementById("songList");
-    const audioPlayer = document.getElementById("audioPlayer");
-    const currentSongImage = document.getElementById("currentSongImage");
+    /* === زياراتك أنت فقط === */
+    let myVisits = localStorage.getItem("myVisits");
 
-    musicBox.addEventListener("click", () => {
-      songList.classList.toggle("show");
-    });
-
-    let currentSong = null;
-    let currentPlayBtn = null;
-    let currentProgress = null;
-    let currentTimeDisplay = null;
-
-    document.querySelectorAll(".song").forEach((song) => {
-      const playBtn = song.querySelector(".song-play-btn");
-      const restartBtn = song.querySelector(".song-restart-btn");
-      const progressFill = song.querySelector(".progress-fill");
-      const timeDisplay = song.querySelector(".song-time");
-
-      const src = song.getAttribute("data-src");
-      const img = song.getAttribute("data-img");
-
-      playBtn.addEventListener("click", () => {
-        if (audioPlayer.src.includes(src)) {
-          if (audioPlayer.paused) {
-            audioPlayer.play();
-            playBtn.textContent = "☐";
-          } else {
-            audioPlayer.pause();
-            playBtn.textContent = "▶";
-          }
-          return;
-        }
-
-        if (currentSong && currentPlayBtn) {
-          currentPlayBtn.textContent = "▶";
-        }
-
-        currentSong = song;
-        currentPlayBtn = playBtn;
-        currentProgress = progressFill;
-        currentTimeDisplay = timeDisplay;
-
-        audioPlayer.src = src;
-        currentSongImage.src = img;
-        audioPlayer.play();
-        playBtn.textContent = "☐";
-
-        audioPlayer.ontimeupdate = () => {
-          if (!audioPlayer.duration) return;
-          const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-          currentProgress.style.width = percent + "%";
-
-          const cMin = Math.floor(audioPlayer.currentTime / 60);
-          const cSec = Math.floor(audioPlayer.currentTime % 60).toString().padStart(2,"0");
-          const tMin = Math.floor(audioPlayer.duration / 60);
-          const tSec = Math.floor(audioPlayer.duration % 60).toString().padStart(2,"0");
-
-          currentTimeDisplay.textContent = `${cMin}:${cSec} / ${tMin}:${tSec}`;
-        };
-      });
-
-      restartBtn.addEventListener("click", () => {
-        if (audioPlayer.src.includes(src)) {
-          audioPlayer.currentTime = 0;
-          audioPlayer.play();
-          playBtn.textContent = "☐";
-        }
-      });
-    });
-
-    audioPlayer.addEventListener("ended", () => {
-      if (currentPlayBtn) currentPlayBtn.textContent = "▶";
-    });
-
-    /* === نظام ProFile Views === */
-
-    let totalVisits = localStorage.getItem("totalVisitsGlobal");
-
-    if (!totalVisits) totalVisits = 0;
-    else totalVisits = parseInt(totalVisits);
-
-    let userVisited = localStorage.getItem("userVisitedNew");
-
-    if (!userVisited) {
-      totalVisits++;
-      localStorage.setItem("totalVisitsGlobal", totalVisits);
-      localStorage.setItem("userVisitedNew", "true");
+    if (!myVisits) {
+      myVisits = 1;
+    } else {
+      myVisits = parseInt(myVisits) + 1;
     }
 
-    document.getElementById("counter").textContent = totalVisits;
+    localStorage.setItem("myVisits", myVisits);
+
+    document.getElementById("counter").textContent = myVisits;
 
     const counterBox = document.getElementById("viewCounterBox");
     const card = document.getElementById("profileViewsCard");
 
     counterBox.addEventListener("click", () => {
       card.classList.toggle("active");
+      card.innerHTML = `
+        <div class="profileTitle">ProFile Views</div>
+        <div style="margin-top:8px;">👤 زياراتك: ${myVisits}</div>
+      `;
     });
 
     card.addEventListener("click", () => {
