@@ -350,35 +350,15 @@
     <img src="^~^.gif">
   </a>
 
-/* === نظام ProFile Views (عدد زياراتك أنت) === */
+  <!-- نظام ProFile Views -->
+  <div id="viewCounterBox">
+      <img class="view-eye" src="view-eye.png">
+      <span class="view-number" id="counter">0</span>
+  </div>
 
-// عدد زياراتك أنت
-let myVisits = localStorage.getItem("myVisits");
-
-if (!myVisits) {
-  myVisits = 1;
-} else {
-  myVisits = parseInt(myVisits) + 1;
-}
-
-// حفظ العدد
-localStorage.setItem("myVisits", myVisits);
-
-// عرض العدد
-document.getElementById("counter").textContent = myVisits;
-
-
-/* === فتح/إغلاق الكارد === */
-const counterBox = document.getElementById("viewCounterBox");
-const card = document.getElementById("profileViewsCard");
-
-counterBox.addEventListener("click", () => {
-  card.classList.toggle("active");
-});
-
-card.addEventListener("click", () => {
-  card.classList.remove("active");
-});
+  <div id="profileViewsCard">
+      <div class="profileTitle">ProFile Views</div>
+  </div>
 
 
   <script>
